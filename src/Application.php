@@ -7,6 +7,7 @@
 
 namespace Deploy;
 
+use Deploy\Command;
 use Symfony\Component\Console\Application as ConsoleApplication;
 use Symfony\Component\DependencyInjection as DI;
 
@@ -41,9 +42,8 @@ class Application extends ConsoleApplication implements DI\ContainerAwareInterfa
     protected function getDefaultCommands()
     {
         $defaultCommands = parent::getDefaultCommands();
-
-//        todo add commands
-//        $defaultCommands[] = new Command();
+        $defaultCommands[] = new Command\UpCommand;
+        $defaultCommands[] = new Command\DownCommand;
 
         return $defaultCommands;
     }
