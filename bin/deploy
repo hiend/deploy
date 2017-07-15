@@ -1,0 +1,27 @@
+#!/usr/bin/env php
+<?php
+set_time_limit(0);
+
+if (PHP_SAPI !== 'cli') {
+    echo 'Warning: Use CLI version' . PHP_EOL;
+}
+
+require __DIR__ . '/../vendor/autoload.php';
+
+use Symfony\Component\DependencyInjection as DI;
+use Symfony\Component\Config;
+
+const APP_NAME = 'Deploy';
+
+$container = new DI\ContainerBuilder;
+$container->set('container', $container);
+
+$locator = new Config\FileLocator(realpath(__DIR__ . '/../config'));
+
+$loader = new DI\Loader\YamlFileLoader($container, $locator);
+$loader->load('config.yml');
+
+$vsn = getAppVersion(realpath(__DIR__ . '/../composer.json'));
+
+$application = new \Deploy\Application($container,APP_NAME, $vsn);
+$application->run();
