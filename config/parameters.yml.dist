@@ -1,6 +1,8 @@
 parameters:
-    sources: '~/app' # Local path to application sources
+    sources: '/home/user/app' # Local path to application sources
     host: 127.0.0.1
+    port: 22
     user: deploy
-    priv: ~/.ssh/id_rsa # Local path to private key
+    pub_key: ~/.ssh/id_rsa.pub # Local path to public key
+    priv_key: ~/.ssh/id_rsa # Local path to private key
     path: ~/app

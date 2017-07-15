@@ -1,3 +1,17 @@
 parameters:
+    finder.class: Symfony\Component\Finder\Finder
+    fs.class: Symfony\Component\Filesystem\Filesystem
+    ssh.class: Deploy\Service\SSH
+    release.class: Deploy\Service\Release
 
 services:
+    finder:
+        class: %finder.class%
+    fs:
+        class: %fs.class%
+    ssh:
+        class: %ssh.class%
+        arguments: [ %host%, %port%, %user%, %pub_key%, %priv_key% ]
+    release:
+        class: %release.class%
+        arguments: [ '@finder', '@fs', '@ssh', %sources% ]

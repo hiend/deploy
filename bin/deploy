@@ -24,5 +24,4 @@ $loader->load('config.yml');
 $vsn = getAppVersion(realpath(__DIR__ . '/../composer.json'));
 
 $application = new \Deploy\Application($container,APP_NAME, $vsn);
-$application->setDefaultCommand('up');
 $application->run();

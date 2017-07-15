@@ -32,6 +32,6 @@ class DownCommand extends ContainerCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $output->writeln('Deploying previous version...');
+        $output->writeln('<info>Rolling back...</info>');
     }
 }
